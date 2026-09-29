@@ -5,12 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>CivicFix</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style.css">
+
 </head>
 <body>
 
-	<h1>Welcome to CivicFix</h1>
+	<div class="container">
 
-	<p>Report and track problems in your locality.</p>
-	
+		<h1>CivicFix</h1>
+
+		<p>Report and track problems in your locality.</p>
+
+	</div>
+
 </body>
 </html>
