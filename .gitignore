@@ -6,3 +6,5 @@ tmp/
 .project
 .classpath
 Servers/
+# Local database configuration
+src/main/resources/db.properties
