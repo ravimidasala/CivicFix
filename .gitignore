@@ -7,4 +7,4 @@ tmp/
 .classpath
 Servers/
 # Local database configuration
-src/main/resources/db.properties
+db.properties
