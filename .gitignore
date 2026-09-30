@@ -1,3 +1,10 @@
-node_modules/ 
-.env 
-/build/
+.metadata/
+bin/
+tmp/
+*.class
+.settings/
+.project
+.classpath
+Servers/
+# Local database configuration
+src/main/resources/db.properties
