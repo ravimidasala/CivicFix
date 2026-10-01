@@ -8,3 +8,4 @@ tmp/
 Servers/
 # Local database configuration
 src/main/resources/db.properties
+/build/
