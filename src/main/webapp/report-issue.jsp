@@ -107,7 +107,7 @@ if (user == null) {
 
 	<br>
 
-	<a href="${pageContext.request.contextPath}/dashboard.jsp"> Back To
+	<a href="${pageContext.request.contextPath}/dashboard"> Back to
 		Dashboard </a>
 
 </body>

@@ -53,14 +53,13 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("userid", user.getId());
 			session.setAttribute("userRole", user.getRole());
 
-			response.sendRedirect(request.getContextPath() + "/dashboard.jsp");
+			response.sendRedirect(request.getContextPath() + "/dashboard");
 
 		} else {
 
 			request.setAttribute("error", "Invalid email or password.");
-			
-			 request.getRequestDispatcher("/login.jsp")
-             .forward(request, response);
+
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 
 		}
 

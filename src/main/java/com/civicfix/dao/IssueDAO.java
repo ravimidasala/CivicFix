@@ -2,7 +2,10 @@ package com.civicfix.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.civicfix.model.Issue;
 import com.civicfix.util.DBConnection;
@@ -35,4 +38,58 @@ public class IssueDAO {
 			return false;
 		}
 	}
+	
+	
+	public List<Issue> findIssuesByUserId(int userId) {
+
+	    List<Issue> issues = new ArrayList<>();
+
+	    String sql =
+	            "SELECT id, tracking_id, user_id, category, title, " +
+	            "description, location, severity, status " +
+	            "FROM issues " +
+	            "WHERE user_id = ? " +
+	            "ORDER BY created_at DESC";
+
+	    try (Connection connection = DBConnection.getConnection();
+	         PreparedStatement statement =
+	                 connection.prepareStatement(sql)) {
+
+	        statement.setInt(1, userId);
+
+	        try (ResultSet resultSet = statement.executeQuery()) {
+
+	            while (resultSet.next()) {
+
+	                Issue issue = new Issue();
+
+	                issue.setId(resultSet.getInt("id"));
+	                issue.setTrackingId(
+	                        resultSet.getString("tracking_id"));
+	                issue.setUserId(
+	                        resultSet.getInt("user_id"));
+	                issue.setCategory(
+	                        resultSet.getString("category"));
+	                issue.setTitle(
+	                        resultSet.getString("title"));
+	                issue.setDescription(
+	                        resultSet.getString("description"));
+	                issue.setLocation(
+	                        resultSet.getString("location"));
+	                issue.setSeverity(
+	                        resultSet.getString("severity"));
+	                issue.setStatus(
+	                        resultSet.getString("status"));
+
+	                issues.add(issue);
+	            }
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return issues;
+	}
+	
 }

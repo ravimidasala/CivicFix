@@ -1,5 +1,7 @@
 package com.civicfix.service;
 
+import java.util.List;
+
 import com.civicfix.dao.IssueDAO;
 import com.civicfix.model.Issue;
 
@@ -61,4 +63,10 @@ public class IssueService {
 
 		return "CF-" + timestamp;
 	}
+	
+	
+	public List<Issue> getIssuesByUserId(int userId) {
+	    return issueDAO.findIssuesByUserId(userId);
+	}
+	
 }

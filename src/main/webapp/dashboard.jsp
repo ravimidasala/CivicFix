@@ -1,59 +1,130 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
-<%@ page import="com.civicfix.model.User" %>
+<%@ page import="java.util.List"%>
+<%@ page import="com.civicfix.model.User"%>
+<%@ page import="com.civicfix.model.Issue"%>
 
 <%
-    User user = (User) session.getAttribute("user");
+User user = (User) session.getAttribute("user");
 
-    if (user == null) {
-        response.sendRedirect(
-            request.getContextPath() + "/login"
-        );
-        return;
-    }
-%>   
-   
-   
+if (user == null) {
+	response.sendRedirect(request.getContextPath() + "/login");
+	return;
+}
+@SuppressWarnings("unchecked")
+List<Issue> issues = (List<Issue>) request.getAttribute("issues");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-  <title>CivicFix - Citizen Dashboard</title>
+<title>CivicFix - Citizen Dashboard</title>
+
+<style>
+.issue-table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.issue-table th, .issue-table td {
+	border: 1px solid #ccc;
+	padding: 8px;
+	text-align: left;
+}
+</style>
+
 </head>
+
 <body>
 
-     <h1>CivicFix</h1>
+	<h1>CivicFix</h1>
 
-    <h2>
-        Welcome, <%= user.getName() %>
-    </h2>
+	<h2>
+		Welcome,
+		<%=user.getName()%>
+	</h2>
 
-    <p>
-        Email: <%= user.getEmail() %>
-    </p>
+	<p>
+		Email:
+		<%=user.getEmail()%>
+	</p>
 
-    <hr>
+	<hr>
 
-    <h3>My Dashboard</h3>
+	<h3>My Dashboard</h3>
 
-    <p>Reported Issues: 0</p>
-    <p>In Progress: 0</p>
-    <p>Resolved: 0</p>
+	<a href="${pageContext.request.contextPath}/report-issue">
+		<button type="button">+ Report New Issue</button>
+	</a>
 
-    <br>
+	<br>
+	<br>
 
-    <a href="${pageContext.request.contextPath}/report-issue">
-    <button type="button">
-        Report New Issue
-    </button>
-</a>
+	<h3>My Issues</h3>
 
-    <br><br>
+	<%
+	if (issues == null || issues.isEmpty()) {
+	%>
 
-    <h3>My Recent Issues</h3>
+	<p>You haven't reported any issues yet.</p>
 
-    <p>No issues reported yet.</p>
+	<%
+	} else {
+	%>
+
+	<table class="issue-table">
+
+		<thead>
+			<tr>
+				<th>Tracking ID</th>
+				<th>Category</th>
+				<th>Title</th>
+				<th>Severity</th>
+				<th>Status</th>
+				<th>Location</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			<%
+			for (Issue issue : issues) {
+			%>
+
+			<tr>
+
+				<td><%=issue.getTrackingId()%></td>
+
+				<td><%=issue.getCategory()%></td>
+
+				<td><%=issue.getTitle()%></td>
+
+				<td><%=issue.getSeverity()%></td>
+
+				<td><%=issue.getStatus()%></td>
+
+				<td><%=issue.getLocation()%></td>
+
+			</tr>
+
+			<%
+			}
+			%>
+
+		</tbody>
+
+	</table>
+
+	<%
+	}
+	%>
+
+	<br>
+
+	<a href="${pageContext.request.contextPath}/report-issue"> Report
+		Another Issue </a>
 
 </body>
 </html>
