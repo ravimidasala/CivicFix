@@ -43,9 +43,11 @@
 
     <br>
 
-    <button>
+    <a href="${pageContext.request.contextPath}/report-issue">
+    <button type="button">
         Report New Issue
     </button>
+</a>
 
     <br><br>
 

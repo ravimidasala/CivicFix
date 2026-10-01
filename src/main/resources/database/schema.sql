@@ -11,3 +11,35 @@ CREATE TABLE users (
     role VARCHAR(20) NOT NULL DEFAULT 'CITIZEN',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+--issues table
+
+CREATE TABLE issues (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+
+    tracking_id VARCHAR(30) NOT NULL UNIQUE,
+
+    user_id INT NOT NULL,
+
+    category VARCHAR(50) NOT NULL,
+
+    title VARCHAR(150) NOT NULL,
+
+    description TEXT NOT NULL,
+
+    location VARCHAR(255) NOT NULL,
+
+    severity VARCHAR(20) NOT NULL DEFAULT 'MEDIUM',
+
+    status VARCHAR(30) NOT NULL DEFAULT 'PENDING',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_issue_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
