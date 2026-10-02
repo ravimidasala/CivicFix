@@ -69,4 +69,8 @@ public class IssueService {
 	    return issueDAO.findIssuesByUserId(userId);
 	}
 	
+	public int getTotalIssuesByUserId(int userId) {
+	    return issueDAO.countIssuesByUserId(userId);
+	}
+	
 }

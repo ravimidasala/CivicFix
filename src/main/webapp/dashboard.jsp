@@ -14,6 +14,8 @@ if (user == null) {
 }
 @SuppressWarnings("unchecked")
 List<Issue> issues = (List<Issue>) request.getAttribute("issues");
+
+Integer totalIssues = (Integer) request.getAttribute("totalIssues");
 %>
 
 <!DOCTYPE html>
@@ -58,6 +60,11 @@ List<Issue> issues = (List<Issue>) request.getAttribute("issues");
 	<hr>
 
 	<h3>My Dashboard</h3>
+
+	<div>
+		<h4>Total Issues</h4>
+		<p><%=totalIssues%></p>
+	</div>
 
 	<a href="${pageContext.request.contextPath}/report-issue">
 		<button type="button">+ Report New Issue</button>

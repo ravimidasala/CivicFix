@@ -92,4 +92,27 @@ public class IssueDAO {
 	    return issues;
 	}
 	
+	public int countIssuesByUserId(int userId) {
+
+	    String sql = "SELECT COUNT(*) FROM issues WHERE user_id = ?";
+
+	    try (Connection connection = DBConnection.getConnection();
+	         PreparedStatement statement = connection.prepareStatement(sql)) {
+
+	        statement.setInt(1, userId);
+
+	        try (ResultSet resultSet = statement.executeQuery()) {
+
+	            if (resultSet.next()) {
+	                return resultSet.getInt(1);
+	            }
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return 0;
+	}
+	
 }
