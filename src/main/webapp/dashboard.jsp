@@ -41,24 +41,23 @@ Integer resolvedIssues = (Integer) request.getAttribute("resolvedIssues");
 }
 
 .dashboard-cards {
-    display: flex;
-    gap: 20px;
-    margin: 20px 0;
+	display: flex;
+	gap: 20px;
+	margin: 20px 0;
 }
 
 .dashboard-card {
-    border: 1px solid #ccc;
-    padding: 20px;
-    min-width: 180px;
-    text-align: center;
+	border: 1px solid #ccc;
+	padding: 20px;
+	min-width: 180px;
+	text-align: center;
 }
 
 .card-number {
-    font-size: 28px;
-    font-weight: bold;
-    margin: 10px 0 0;
+	font-size: 28px;
+	font-weight: bold;
+	margin: 10px 0 0;
 }
-
 </style>
 
 </head>
@@ -144,7 +143,10 @@ Integer resolvedIssues = (Integer) request.getAttribute("resolvedIssues");
 
 			<tr>
 
-				<td><%=issue.getTrackingId()%></td>
+				<td><a
+					href="${pageContext.request.contextPath}/issue?id=<%= issue.getId() %>">
+						<%=issue.getTrackingId()%>
+				</a></td>
 
 				<td><%=issue.getCategory()%></td>
 

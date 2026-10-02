@@ -81,4 +81,12 @@ public class IssueService {
 	    return issueDAO.countResolvedIssuesByUserId(userId);
 	}
 	
+	public Issue getIssueById(int issueId) {
+	    if (issueId <= 0) {
+	        return null;
+	    }
+
+	    return issueDAO.findIssueById(issueId);
+	}
+	
 }
