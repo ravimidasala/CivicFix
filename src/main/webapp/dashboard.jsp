@@ -16,6 +16,7 @@ if (user == null) {
 List<Issue> issues = (List<Issue>) request.getAttribute("issues");
 
 Integer totalIssues = (Integer) request.getAttribute("totalIssues");
+Integer pendingIssues = (Integer) request.getAttribute("pendingIssues");
 %>
 
 <!DOCTYPE html>
@@ -64,6 +65,11 @@ Integer totalIssues = (Integer) request.getAttribute("totalIssues");
 	<div>
 		<h4>Total Issues</h4>
 		<p><%=totalIssues%></p>
+	</div>
+
+	<div>
+		<h4>Pending Issues</h4>
+		<p><%=pendingIssues%></p>
 	</div>
 
 	<a href="${pageContext.request.contextPath}/report-issue">

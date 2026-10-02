@@ -115,4 +115,32 @@ public class IssueDAO {
 	    return 0;
 	}
 	
+	
+	public int countPendingIssuesByUserId(int userId) {
+
+	    String sql =
+	        "SELECT COUNT(*) FROM issues " +
+	        "WHERE user_id = ? AND status = ?";
+
+	    try (Connection connection = DBConnection.getConnection();
+	         PreparedStatement statement =
+	             connection.prepareStatement(sql)) {
+
+	        statement.setInt(1, userId);
+	        statement.setString(2, "PENDING");
+
+	        try (ResultSet resultSet = statement.executeQuery()) {
+
+	            if (resultSet.next()) {
+	                return resultSet.getInt(1);
+	            }
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return 0;
+	}
+	
 }

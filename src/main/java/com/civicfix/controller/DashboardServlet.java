@@ -41,10 +41,14 @@ public class DashboardServlet extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 
 		List<Issue> issues = issueService.getIssuesByUserId(user.getId());
+
 		int totalIssues = issueService.getTotalIssuesByUserId(user.getId());
+
+		int pendingIssues = issueService.getPendingIssuesByUserId(user.getId());
 
 		request.setAttribute("issues", issues);
 		request.setAttribute("totalIssues", totalIssues);
+		request.setAttribute("pendingIssues", pendingIssues);
 
 		request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
 
