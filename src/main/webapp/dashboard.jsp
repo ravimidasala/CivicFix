@@ -51,6 +51,10 @@ List<Issue> issues = (List<Issue>) request.getAttribute("issues");
 		<%=user.getEmail()%>
 	</p>
 
+	<p>
+		<a href="${pageContext.request.contextPath}/logout"> Logout </a>
+	</p>
+
 	<hr>
 
 	<h3>My Dashboard</h3>
