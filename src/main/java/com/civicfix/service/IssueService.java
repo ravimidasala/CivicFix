@@ -77,4 +77,8 @@ public class IssueService {
 	    return issueDAO.countPendingIssuesByUserId(userId);
 	}
 	
+	public int getResolvedIssuesByUserId(int userId) {
+	    return issueDAO.countResolvedIssuesByUserId(userId);
+	}
+	
 }

@@ -46,9 +46,12 @@ public class DashboardServlet extends HttpServlet {
 
 		int pendingIssues = issueService.getPendingIssuesByUserId(user.getId());
 
+		int resolvedIssues = issueService.getResolvedIssuesByUserId(user.getId());
+
 		request.setAttribute("issues", issues);
 		request.setAttribute("totalIssues", totalIssues);
 		request.setAttribute("pendingIssues", pendingIssues);
+		request.setAttribute("resolvedIssues", resolvedIssues);
 
 		request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
 
