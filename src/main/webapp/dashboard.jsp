@@ -39,6 +39,26 @@ Integer resolvedIssues = (Integer) request.getAttribute("resolvedIssues");
 	padding: 8px;
 	text-align: left;
 }
+
+.dashboard-cards {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.dashboard-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    min-width: 180px;
+    text-align: center;
+}
+
+.card-number {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 10px 0 0;
+}
+
 </style>
 
 </head>
@@ -65,19 +85,23 @@ Integer resolvedIssues = (Integer) request.getAttribute("resolvedIssues");
 
 	<h3>My Dashboard</h3>
 
-	<div>
-		<h4>Total Issues</h4>
-		<p><%=totalIssues%></p>
-	</div>
+	<div class="dashboard-cards">
 
-	<div>
-		<h4>Pending Issues</h4>
-		<p><%=pendingIssues%></p>
-	</div>
+		<div class="dashboard-card">
+			<h4>Total Issues</h4>
+			<p class="card-number"><%=totalIssues%></p>
+		</div>
 
-	<div>
-		<h4>Resolved Issues</h4>
-		<p><%=resolvedIssues%></p>
+		<div class="dashboard-card">
+			<h4>Pending Issues</h4>
+			<p class="card-number"><%=pendingIssues%></p>
+		</div>
+
+		<div class="dashboard-card">
+			<h4>Resolved Issues</h4>
+			<p class="card-number"><%=resolvedIssues%></p>
+		</div>
+
 	</div>
 
 	<a href="${pageContext.request.contextPath}/report-issue">
